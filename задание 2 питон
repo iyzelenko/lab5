@@ -1,0 +1,23 @@
+import numpy as np
+from scipy.interpolate import lagrange
+import matplotlib.pyplot as plt
+
+# Точки xi
+x = [0.1  *  np.pi, 0.2  *  np.pi, 0.3  *  np.pi, 0.4  *  np.pi]
+
+# Значения yi
+yi = [np.sin(xi) for xi in x]
+
+# Функция для вычисления sin(x)
+def f(x):
+    return np.sin(x)
+
+# Интерполяционный многочлен Лагранжа
+poly = lagrange(x, yi)
+
+# Вычисление значения погрешности в точке x *  = 0.25π
+x_star = 0.25  *  np.pi
+delta_y = abs(f(x_star) - poly(x_star))
+
+print("Интерполяционный многочлен Лагранжа:", poly)
+print("Значение погрешности интерполяции в точке x *  = 0.25π:", delta_y)
